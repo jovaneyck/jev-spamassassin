@@ -32,7 +32,7 @@ The criteria still help on test, but the gain is much smaller than on train. Par
 ## Takeaways
 
 - **`state` holds the data, questions point into it.** Name things once and refer to them with backticks.
-- **Batch to save cost.** 10 emails per request means 10 requests per 100 emails.
+- **Batch to share the per-request overhead.** 10 emails per request used 37% fewer input tokens, at the price of the trade-offs listed in step 4.
 - **Measure before you change anything**, then read the misses. They tell you what to change.
 - **Criteria draw the line** between yes and no better than a one-line definition does.
 - **Keep a test set you don't look at.**
