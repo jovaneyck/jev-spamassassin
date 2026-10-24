@@ -7,7 +7,7 @@
 A Jev request has two parts:
 
 - **`state`**: what Jev looks at. Here that's one email.
-- **`questions`**: what you ask about it. A **Noul** is a yes/no question. Its answer is a number between 0 (no) and 1 (yes).
+- **`questions`**: what you ask about it. A **Noul** is a yes/no question. Its answer is decimal number between 0.0 (no) and 1.0 (yes). Jev supports different kinds of questions which might be interesting to look at later in the workshop.
 
 A question refers to things in `state` by name, between backticks: `` `email` ``.
 
@@ -46,7 +46,7 @@ A question refers to things in `state` by name, between backticks: `` `email` ``
 
 ## ✅ Checkpoint
 
-The last line is a number close to **0.95**: Jev is sure it's spam.
+The last line is a number close to **0.95**: Jev is preeeetty sure it's spam.
 
 But this email is from `hard_ham`: Ryanair travel insurance, sent to a customer who signed up for it. Keep it in mind for step 6.
 
