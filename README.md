@@ -1,12 +1,20 @@
 # Build with Jev: a spam filter in one hour
 
-You'll build a spam filter on the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/) by asking Jev yes/no questions about emails. Then you'll measure it, improve it once, and check whether the improvement holds on emails you haven't looked at.
+Let's build a spam filter on the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/) by asking Jev yes/no questions about emails. Then you'll measure it, improve it once, and check whether the improvement holds on emails you haven't looked at.
 
 ## You need
 
 - [uv](https://docs.astral.sh/uv/getting-started/installation/) (it installs Python 3.12 for you)
 - A TypeSafe API key (ask the facilitator)
 - A terminal open in this folder
+
+Typesafe clients are available for other languages as well, but you're on your own porting the workshop to them.
+
+## On the use of coding agents
+
+Coding agents are encouraged but not essential to reduce the toil, you'll learn most effectively by going through the workshop step by step and making sure you understand each part before moving on. Protip: ask the agent for clarifications whenever something is unclear!
+
+Jev is quite fresh and not yet part of the model weights, so you might want to copy the following skill for better results when working with typesafe/jev: [typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md)
 
 ## Agenda
 

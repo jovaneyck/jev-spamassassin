@@ -13,7 +13,7 @@
 2. Copy `.env.example` to `.env` and replace `<api_key_here>` with your key:
 
    ```
-   API_KEY=ts-...
+   API_KEY=apikey_...
    ```
 
 3. Unpack the corpus:
