@@ -8,7 +8,7 @@ Let's build a spam filter on the [SpamAssassin public corpus](https://spamassass
 - A TypeSafe API key (ask the facilitator)
 - A terminal open in this folder
 
-Typesafe clients are available for other languages as well, but you're on your own porting the workshop to them.
+Typesafe clients are available for Javascript and other languages as well, but you and your agent will be on your own porting the workshop to them and struggling with API inconsistencies.
 
 ## On the use of coding agents
 
