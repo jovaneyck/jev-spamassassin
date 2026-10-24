@@ -37,7 +37,7 @@ A Noul can take **criteria**: a description of what counts as yes (`true`) and w
    uv run pytest
    ```
 
-4. Run the train set again and add the numbers to your table:
+4. Run the train set again, write down the new numbers next to your baseline numbers from step 5, and compare them:
 
    ```
    uv run solve.py train
@@ -52,7 +52,6 @@ A Noul can take **criteria**: a description of what counts as yes (`true`) and w
 |---|---|---|---|---|---|
 | Baseline (expected) | 0.98 | 0.91 | 0.82 | 1.00 | 0.55 |
 | Criteria (expected) | 1.00 | 0.97 | 0.97 | 0.96 | 0.95 |
-| **Yours** | | | | | |
 
 Precision went up a lot and recall dropped a little: a spam or two now slips through. For a spam filter, that's usually the right trade.
 

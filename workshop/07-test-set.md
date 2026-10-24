@@ -14,17 +14,17 @@ You wrote the criteria **after looking at the train misses**. Does the improveme
    uv run solve.py test
    ```
 
-2. Compare it with your train results.
+2. Compare it with the train numbers you wrote down in steps 5 and 6.
 
 ## ✅ Checkpoint
 
-Your numbers should be close to these:
+Your test numbers should be close to the **Test, criteria** row. You didn't run the baseline on test (that saves 10 requests), so the **Test, baseline** row comes from the facilitator's run:
 
 | Set | accuracy | precision | hard_ham accuracy |
 |---|---|---|---|
 | Train, baseline | 0.91 | 0.82 | 0.55 |
 | Train, criteria | 0.97 | 0.97 | 0.95 |
-| Test, baseline | 0.93 | 0.85 | 0.70 |
+| Test, baseline (facilitator's run) | 0.93 | 0.85 | 0.70 |
 | Test, criteria | 0.94 | 0.89 | 0.80 |
 
 The criteria still help on test, but the gain is much smaller than on train. Part of the train gain was **fitting the emails you looked at**. That's why you climb on train and only check on test. Once you start tuning on test, it stops being a test.
