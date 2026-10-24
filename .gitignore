@@ -1,0 +1,9 @@
+.env
+dataset/
+out/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
