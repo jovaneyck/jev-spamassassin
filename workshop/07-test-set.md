@@ -37,14 +37,4 @@ The criteria still help on test, but the gain is much smaller than on train. Par
 - **Criteria draw the line** between yes and no better than a one-line definition does.
 - **Keep a test set you don't look at.**
 
-## Want more? (Ha)
-
-Ideas to try on train, measuring each one:
-
-- Pick the threshold that maximises accuracy on train instead of using 0.5.
-- Ask the question in three different wordings and average the answers.
-- Show Jev a few labelled train emails as examples in `state`.
-- Send headers like `List-Unsubscribe` along with the email: subscribed newsletters usually have them.
-- Change `GROUP` to 20 and see whether quality drops as cost halves.
-
-[← Back to the agenda](../README.md)
+[Next: Exploring further →](08-exploring-further.md) · [← Back to the agenda](../README.md)

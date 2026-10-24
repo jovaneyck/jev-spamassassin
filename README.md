@@ -30,6 +30,8 @@ Jev is quite fresh and not yet part of the model weights, so you might want to c
 
 Start with [step 1](workshop/01-setup.md).
 
+After the workshop: [Exploring further](workshop/08-exploring-further.md) covers hill-climbing, by hand or with Claude doing the climbing for you.
+
 ## Project map
 
 | Path              | What it does                                                       |
