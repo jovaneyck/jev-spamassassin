@@ -14,7 +14,7 @@ load_dotenv()
 
 with TypeSafeClient(api_key=os.environ["API_KEY"]) as client:
     result = client.system_one(
-        state="Hello Jev, we're going to filter spam together.",
-        questions={"is_greeting": Noul(instructions="Does `state` contain a greeting?")},
+        state="Hello there Jev, how are you doing today?",
+        questions={"is_greeting": Noul(instructions="Does `state` contain a greeting targeted at Jev, the new decision model?")},
     )
     print(result.answers)

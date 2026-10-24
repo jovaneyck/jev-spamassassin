@@ -37,7 +37,7 @@
 ## ✅ Checkpoint
 
 - `extract.py` printed nine `dataset/...` folders.
-- `hello_jev.py` printed an answer to `is_greeting` with a `noul` close to 1.
+- `hello_jev.py` printed an answer to `is_greeting` with a `noul` larger than 0.5.
 - `pytest` printed `23 passed`.
 
 If any of these failed, raise your hand before you continue.
