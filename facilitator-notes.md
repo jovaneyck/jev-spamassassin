@@ -75,6 +75,6 @@ Jev's answers vary from run to run. Two identical train runs differed by about 0
 
 ## How the data was prepared
 
-- **Corpus:** the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/). Only the latest release of each partition is used, because later releases fix and replace earlier ones (`latest_releases` in `spam/corpus.py`): `20030228_{easy_ham, easy_ham_2, hard_ham, spam}` and `20050311_spam_2`. That leaves 6046 emails.
+- **Corpus:** the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/). Only the latest release of each partition is used, because later releases fix and replace earlier ones (`latest_releases` in `spam/corpus.py`): `20030228_{easy_ham, easy_ham_2, hard_ham, spam}` and `20050311_spam_2`. That leaves 6045 emails (`spam_2/00471.df77…` was removed from both `spam_2` archives: its 7000-parameter `Content-Type` header trips ClamAV's `Heuristics.Limits.Exceeded.EmailMIMEArguments`, which corporate antivirus such as Cisco AMP flags and quarantines).
 - **Splits:** `split.py` draws 20 emails per partition for each set with seed 42. The two sets are disjoint, and each has 60 ham and 40 spam. They're committed in `splits/`. Re-running `split.py` with another `PER_PARTITION` redraws **both** sets.
 - **Output:** `solve.py` writes per-email scores to `out/<set>.jsonl`, which is gitignored.
