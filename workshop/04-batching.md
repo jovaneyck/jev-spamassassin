@@ -57,4 +57,36 @@ Every response reports its own token counts in `result.usage.input_tokens` and `
 - After step 6, move `CRITERIA` from the questions into `state`, refer to it from each question, and measure the tokens saved.
 - Shuffle the train set so each email gets different neighbours, run it twice, and compare the answers to see how much the neighbours matter.
 
+## 🧠 Self-check
+
+Answer each question for yourself before you open it.
+
+<details>
+<summary>Billing is per token, not per request. So where does batching save money?</summary>
+
+Every request carries a fixed overhead of about 260 input tokens. Batching 10 emails pays it once instead of 10 times.
+
+</details>
+
+<details>
+<summary>Why does the question for email 3 say `` `emails.e3` `` and not `` `email` ``?</summary>
+
+`state` now holds ten emails under `emails`, keyed `e1` … `e10`. Each question has to point at its own email.
+
+</details>
+
+<details>
+<summary>When is batching worth the least?</summary>
+
+With long emails: the overhead is small next to the email itself. And anything attached per question (instructions, criteria) is repeated per email, so it doesn't get shared.
+
+</details>
+
+<details>
+<summary>A batched request times out. What do you lose?</summary>
+
+All 10 answers in it, not just one.
+
+</details>
+
 [Next: Measure the baseline →](05-baseline.md)

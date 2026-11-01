@@ -55,4 +55,36 @@ A Noul can take **criteria**: a description of what counts as yes (`true`) and w
 
 Precision went up a lot and recall dropped a little: a spam or two now slips through. For a spam filter, that's usually the right trade.
 
+## 🧠 Self-check
+
+Answer each question for yourself before you open it.
+
+<details>
+<summary>What do criteria give Jev that the one-line question didn't?</summary>
+
+An explicit boundary: what counts as yes and what counts as no, including the case the question got wrong (subscribed commercial mail is a no).
+
+</details>
+
+<details>
+<summary>`pytest` passes. Does that mean the filter got better?</summary>
+
+No. The tests check that requests are built and answers read correctly. Only `solve.py` measures quality.
+
+</details>
+
+<details>
+<summary>Why did recall drop a little?</summary>
+
+The criteria narrow what counts as spam. A spam that looks like ordinary shop mail can now land on the "no" side.
+
+</details>
+
+<details>
+<summary>Criteria sit in each question. What does that cost per batch, and how would you avoid it?</summary>
+
+They're repeated 10 times per request. Put them in `state` once and refer to them by name from each question.
+
+</details>
+
 [Next: Check on the test set →](07-test-set.md)

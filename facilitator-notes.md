@@ -35,6 +35,7 @@ Step 8 (hill-climbing) is open-ended. The autonomous Claude prompt caps itself a
 
 | #   | Step           | Time | Watch out for                                                                                         |
 | --- | -------------- | ---- | ----------------------------------------------------------------------------------------------------- |
+| 0   | Intro to Jev   | 10   | Take your time here. See [Opening](#opening-explain-jev).                                             |
 | 1   | Setup          | 10   | uv not installed, `.env` missing or in the wrong folder. On PowerShell, `cp .env.example .env` works. |
 | 2   | Meet the data  | 5    | Nothing tricky. Keep it moving.                                                                       |
 | 3   | First Jev call | 10   | The Windows console may show `£` as `�`. That's the console's encoding, not a bug.                    |
@@ -42,6 +43,27 @@ Step 8 (hill-climbing) is open-ended. The autonomous Claude prompt caps itself a
 | 5   | Baseline       | 10   | Make sure attendees **write down** their numbers, because step 6 overwrites `out/train.jsonl`.        |
 | 6   | Improve        | 15   | Most errors are copy-paste errors in `spam/jev.py`. `uv run pytest` catches them.                     |
 | 7   | Test set       | 5    | Tight: the explainer is long. Take time from step 6 if needed.                                        |
+| –   | Closing circle | 5    | Don't skip it, even when running late. See [Closing circle](#closing-circle).                         |
+
+Each step ends with a **🧠 Self-check**: questions with collapsed answers. Point attendees to them, and ask one out loud when the room is ahead of schedule.
+
+## Opening: explain Jev
+
+Before step 1, take time to explain Jev. Attendees who skip this treat it as a chat LLM and get lost in step 3. Cover:
+
+- **What it is:** an API that answers typed questions about data you give it, not a chat model. See the [jev introduction](https://docs.typesafe.ai/introduction).
+- **`state` and `questions`:** `state` is the data, questions point into it by name between backticks.
+- **Noul:** a yes/no question answered as a number from 0.0 to 1.0. Mention that other question types exist.
+- **Model and SDK:** `jev-preview` via `typesafe_sdk`, and the [skill](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md) for coding agents, since Jev isn't in their training data.
+
+## Closing circle
+
+Last 5 minutes. Everyone answers in one sentence, round the room:
+
+- What surprised you?
+- Where would you use Jev in your own work?
+
+Collect open questions and follow up afterwards.
 
 ## Expected numbers
 

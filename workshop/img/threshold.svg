@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-size="13" fill="#222">
+  <title>Ten emails on a score line, split by the 0.5 threshold into TP, FN, FP and TN</title>
+  <rect width="780" height="300" fill="#fff"/>
+
+  <!-- regions -->
+  <rect x="100" y="55" width="320" height="170" fill="#eaf6ec"/>
+  <rect x="420" y="55" width="320" height="170" fill="#fdecec"/>
+  <text x="260" y="45" text-anchor="middle" font-weight="600">Not flagged → inbox</text>
+  <text x="580" y="45" text-anchor="middle" font-weight="600">Flagged → spam folder</text>
+  <line x1="420" y1="30" x2="420" y2="240" stroke="#222" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="420" y="22" text-anchor="middle" font-size="12">threshold 0.5</text>
+
+  <!-- lane labels -->
+  <text x="88" y="105" text-anchor="end" font-weight="600" fill="#c0392b">spam</text>
+  <text x="88" y="175" text-anchor="end" font-weight="600" fill="#1f6f99">ham</text>
+
+  <!-- spam: 0.97 0.90 0.80 0.40 -->
+  <g fill="#d1495b">
+    <circle cx="720.8" cy="100" r="10"/><circle cx="676" cy="100" r="10"/><circle cx="612" cy="100" r="10"/><circle cx="356" cy="100" r="10"/>
+  </g>
+  <g text-anchor="middle" font-size="12" font-weight="700">
+    <text x="720.8" y="80">TP</text><text x="676" y="80">TP</text><text x="612" y="80">TP</text><text x="356" y="80" fill="#c0392b">FN</text>
+  </g>
+
+  <!-- ham: 0.70 0.30 0.20 0.15 0.10 0.05 -->
+  <g fill="#2e86ab">
+    <circle cx="548" cy="170" r="10"/><circle cx="292" cy="170" r="10"/><circle cx="228" cy="170" r="10"/><circle cx="196" cy="170" r="10"/><circle cx="164" cy="170" r="10"/><circle cx="132" cy="170" r="10"/>
+  </g>
+  <g text-anchor="middle" font-size="12" font-weight="700">
+    <text x="548" y="200" fill="#c0392b">FP</text><text x="292" y="200">TN</text><text x="228" y="200">TN</text><text x="196" y="200">TN</text><text x="164" y="200">TN</text><text x="132" y="200">TN</text>
+  </g>
+
+  <!-- axis -->
+  <line x1="100" y1="240" x2="740" y2="240" stroke="#222"/>
+  <g stroke="#222"><line x1="100" y1="240" x2="100" y2="246"/><line x1="260" y1="240" x2="260" y2="246"/><line x1="420" y1="240" x2="420" y2="246"/><line x1="580" y1="240" x2="580" y2="246"/><line x1="740" y1="240" x2="740" y2="246"/></g>
+  <g text-anchor="middle" font-size="12"><text x="100" y="260">0</text><text x="260" y="260">0.25</text><text x="420" y="260">0.5</text><text x="580" y="260">0.75</text><text x="740" y="260">1</text></g>
+  <text x="420" y="285" text-anchor="middle" font-size="12">Jev's spam score</text>
+</svg>

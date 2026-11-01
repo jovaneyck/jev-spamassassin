@@ -52,4 +52,36 @@ On train, accuracy went up by 0.06 and `hard_ham` went from 11 to 19 correct out
 - **Criteria draw the line** between yes and no better than a one-line definition does.
 - **Keep a test set you don't look at.** The train score tells you what you tuned for. The test score tells you what to expect on new email.
 
+## 🧠 Self-check
+
+Answer each question for yourself before you open it.
+
+<details>
+<summary>Train accuracy went up by 0.06, test accuracy by 0.01. Why the difference?</summary>
+
+The criteria were written after reading the train misses, so part of the train gain is fitting those specific emails: overfitting.
+
+</details>
+
+<details>
+<summary>Is the +0.01 on test proof that the criteria help?</summary>
+
+No. That's one email, well within the run-to-run noise of about 0.01.
+
+</details>
+
+<details>
+<summary>You spot a test miss, tweak the criteria and run test again. What went wrong?</summary>
+
+The test set leaked into your tuning. Its score is now as optimistic as the train score, and you need fresh emails for an honest number.
+
+</details>
+
+<details>
+<summary>The baseline scored higher on test (0.93) than on train (0.91). Does that matter?</summary>
+
+No. They're different emails, and on 100 emails that's two emails' difference. Small sets are noisy.
+
+</details>
+
 [Next: Exploring further →](08-exploring-further.md) · [← Back to the agenda](../README.md)

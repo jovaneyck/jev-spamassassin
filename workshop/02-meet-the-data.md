@@ -49,4 +49,29 @@ You've seen three emails, each with only `from`, `subject` and `body`. Jev never
 
 Can you tell which one is the hard ham without looking at the partition name?
 
+## 🧠 Self-check
+
+Answer each question for yourself before you open it.
+
+<details>
+<summary>Why is `hard_ham` the interesting partition for a spam filter?</summary>
+
+It's legitimate mail that looks like spam (newsletters, shop mail). Those are the emails a filter is most likely to flag by mistake.
+
+</details>
+
+<details>
+<summary>Jev only sees `from`, `subject` and the first 2000 characters of the body. What's gained and what's lost?</summary>
+
+Gained: smaller, cheaper requests. Lost: every other header, including signals like `List-Unsubscribe` that subscribed newsletters usually carry.
+
+</details>
+
+<details>
+<summary>Why shouldn't you run Jev on the test set while you're still building and improving the classifier?</summary>
+
+Every test result you react to shapes your questions and criteria a little. After a few rounds, the test score tells you how well you fitted those 100 emails, not how the filter does on email it has never seen. Step 7 covers this.
+
+</details>
+
 [Next: Your first Jev call →](03-first-jev-call.md)
