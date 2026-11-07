@@ -2,7 +2,7 @@
 
 from typesafe_sdk import AsyncTypeSafeClient, Noul
 
-MODEL = "jev-1.14.0"  # pinned: aliases like jev-latest move, and so would the expected numbers
+MODEL = "jev-1.14.0"
 GROUP = 10  # emails per request
 
 

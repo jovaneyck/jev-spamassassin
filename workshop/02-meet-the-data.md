@@ -6,18 +6,18 @@
 
 The corpus has five partitions:
 
-| Partition | Label | What's in it |
-|---|---|---|
-| `easy_ham` | ham | Personal mail and mailing-list discussion |
-| `easy_ham_2` | ham | The same, collected later |
-| `hard_ham` | ham | Legitimate mail that **looks** like spam: newsletters, shop mail |
-| `spam` | spam | Spam |
-| `spam_2` | spam | Spam, collected later |
+| Partition    | Label | What's in it                                                         |
+| ------------ | ----- | -------------------------------------------------------------------- |
+| `easy_ham`   | ham   | Personal mail and mailing-list discussion                            |
+| `easy_ham_2` | ham   | More personal mail                                                   |
+| `hard_ham`   | ham   | **Legitimate** mail that **looks** like spam: newsletters, shop mail |
+| `spam`       | spam  | Real Spam                                                            |
+| `spam_2`     | spam  | More real Spam                                                       |
 
 `splits/train.txt` and `splits/test.txt` each list 100 emails: 20 from every partition, so 60 ham and 40 spam. The two sets don't overlap.
 
-- **Train** is your playground. Look at it as much as you like.
-- **Test** is for the final check in step 7. Don't look at it before then.
+- **Train** is your playground. Both you and your coding agent can look at it as much as you like.
+- **Test** is for the final check in step 7. Don't look at it before then, also don't let your coding agent take a peak!
 
 ## Do
 
@@ -70,7 +70,7 @@ Gained: smaller, cheaper requests. Lost: every other header, including signals l
 <details>
 <summary>Why shouldn't you run Jev on the test set while you're still building and improving the classifier?</summary>
 
-Every test result you react to shapes your questions and criteria a little. After a few rounds, the test score tells you how well you fitted those 100 emails, not how the filter does on email it has never seen. Step 7 covers this.
+Every test result you react to shapes your questions and criteria a little. After a few rounds, the test score tells you how well you fitted those 100 emails, not how the filter does on email it has never seen. In step 7 we will dive into details.
 
 </details>
 

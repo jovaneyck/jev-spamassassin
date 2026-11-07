@@ -68,9 +68,9 @@ It sent a `state` (one sentence) and `questions` (one Noul named `is_greeting`, 
 </details>
 
 <details>
-<summary>You get a number between 0 and 1 back. What do you typically do with it?</summary>
+<summary>You get a number between 0 and 1 back. What do you think the number means? What do you typically do with it?</summary>
 
-Turn it into a decision with a threshold (in this workshop: 0.5 or higher means spam), or use it to rank items, most likely yes first. `solve.py` does both: accuracy, precision and recall use the threshold, and AUC uses the ranking.
+Turn it into a decision with a threshold (in this workshop: 0.5 or higher means spam), or use it to rank items, most likely yes first.
 
 </details>
 
