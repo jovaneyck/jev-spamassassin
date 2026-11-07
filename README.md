@@ -1,6 +1,6 @@
 # Build with Jev: a spam filter in one hour
 
-Let's build a spam filter on the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/) by asking Jev yes/no questions about emails. Then you'll measure it, improve it once, and check whether the improvement holds on emails you haven't looked at.
+Let's build a spam filter on the [SpamAssassin public corpus](https://spamassassin.apache.org/old/publiccorpus/) by asking Jev yes/no questions about emails. Then you'll measure it, improve it, and check whether the improvement holds on emails you've never looked at. At the end of the workshop, you'll be ready to build AI-powered systems built on System 1/decision models from scratch.
 
 ## You need
 
@@ -8,13 +8,15 @@ Let's build a spam filter on the [SpamAssassin public corpus](https://spamassass
 - A TypeSafe API key (ask the facilitator)
 - A terminal open in this folder
 
-Typesafe clients are available for Javascript and other languages as well, but you and your agent will be on your own porting the workshop to them and struggling with API inconsistencies.
+Typesafe clients are available for Javascript and other languages as well, but you and your agent will be on your own porting the workshop to them and struggling with any potential API inconsistencies.
 
 ## On the use of coding agents
 
-Coding agents are encouraged but not essential to reduce the toil, you'll learn most effectively by going through the workshop step by step and making sure you understand each part before moving on. Protip: ask the agent for clarifications whenever something is unclear!
+Coding agents are very much encouraged but not essential. If you utilize them, leverage them to reduce the toil, not to rob you of the learning. You'll learn most effectively by going through the workshop step by step and making sure you understand each part before moving on. Each part ends with self-assessment questions you should be able to answer before proceeding to the next one. 
 
-Jev is quite fresh and not yet part of the model weights, so you might want to copy the following skill for better results when working with typesafe/jev: [typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md)
+Protip: ask your coding agent for clarifications whenever you are stuck or something is unclear!
+
+Jev is quite fresh and not yet part of the model weights, so you might want to point your agent the following skill for better results when working with typesafe/jev: [typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md](./.agents/skills/typesafe-ai/SKILL.md)
 
 ## How Jev is meant to be used
 
@@ -34,18 +36,18 @@ Jev is quite fresh and not yet part of the model weights, so you might want to c
 
 Start with [step 1](workshop/01-setup.md).
 
-After the workshop: [Exploring further](workshop/08-exploring-further.md) covers hill-climbing, by hand or with Claude doing the climbing for you.
+After the workshop: [Exploring further](workshop/08-exploring-further.md) covers hill-climbing by hand or with your coding agent doing the climbing for you.
 
 ## Project map
 
-| Path              | What it does                                                       |
-| ----------------- | ------------------------------------------------------------------ |
-| `extract.py`      | Unpacks the corpus archives into `dataset/`                        |
-| `split.py`        | Writes the train and test sets to `splits/` (already done for you) |
-| `spam/message.py` | Reduces a raw email to what Jev reads, and works out facts in code |
-| `spam/jev.py`     | The questions Jev answers, asked for a batch of emails at once     |
-| `spam/decision.py`| Combines Jev's judgments and the facts into a spam score            |
-| `spam/solver.py`  | Sends every batch, a few at a time                                 |
-| `spam/metrics.py` | AUC, accuracy, precision and recall                                |
-| `solve.py`        | Classifies a set and prints its scores                             |
-| `tests/`          | Unit tests: `uv run pytest`                                        |
+| Path               | What it does                                                       |
+| ------------------ | ------------------------------------------------------------------ |
+| `extract.py`       | Unpacks the corpus archives into `dataset/`                        |
+| `split.py`         | Writes the train and test sets to `splits/` (already done for you) |
+| `spam/message.py`  | Reduces a raw email to what Jev reads, and works out facts in code |
+| `spam/jev.py`      | The questions Jev answers, asked for a batch of emails at once     |
+| `spam/decision.py` | Combines Jev's judgments and the facts into a spam score           |
+| `spam/solver.py`   | Sends every batch, a few at a time                                 |
+| `spam/metrics.py`  | AUC, accuracy, precision and recall                                |
+| `solve.py`         | Classifies a set and prints its scores                             |
+| `tests/`           | Unit tests: `uv run pytest`                                        |
