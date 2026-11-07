@@ -70,9 +70,9 @@ It names a key in `state` between backticks: `` `email` ``.
 </details>
 
 <details>
-<summary>Jev answered 0.95. Does that mean 95 out of 100 emails like this one are spam?</summary>
+<summary>Let's suppose Jev answered 0.95. Does that mean 95 out of 100 emails like this one are spam?</summary>
 
-Not necessarily. 0.95 means Jev leans strongly towards yes. Whether 95% of emails scored 0.95 really are spam is something you have to measure on labelled data. This email scored 0.95 and is ham: a confident answer can still be wrong, because Jev answers the question as you asked it.
+Not necessarily. 0.95 means Jev leans strongly towards yes on this specific question. Whether 95% of emails scored 0.95 really are spam is something you we'll have to measure later on more labelled data. The main takeaway: just as with LLM's, a confident answer can still be confidently wrong.
 
 </details>
 

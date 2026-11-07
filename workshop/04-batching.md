@@ -4,16 +4,16 @@
 
 ## Read
 
-You pay for Jev per token, not per request. So why batch?
+You pay for Jev per token, not per request. So why are we talking about batching?
 
 Every request carries a **fixed overhead** of about 260 input tokens: the framing Jev wraps around your `state` and `questions`. An email averages about 400 tokens, so asking about one email per request spends a big share of its tokens on that overhead. Put 10 emails in one request and you pay the overhead once instead of 10 times.
 
 Measured on the first 10 train emails:
 
-| | Input tokens | Output tokens |
-|---|---|---|
-| 10 requests, 1 email each | 6501 | 230 |
-| 1 request, 10 emails | 4127 | 195 |
+|                           | Input tokens | Output tokens |
+| ------------------------- | ------------ | ------------- |
+| 10 requests, 1 email each | 6501         | 230           |
+| 1 request, 10 emails      | 4127         | 195           |
 
 That's **37% fewer input tokens** for the same 10 answers.
 
@@ -44,7 +44,7 @@ Batching isn't free:
 
 - **The saving depends on the ratio.** Short emails, or a large context that every email shares (instructions, examples, reference images), make batching worth more. With long emails the overhead is small next to the email, and so is the saving.
 - **Only `state` is shared.** Anything you attach to each question, such as instructions or criteria, is repeated once per email in the batch. To share it, put it in `state` once and refer to it by name.
-- **Emails can influence each other.** A spammy neighbour might pull a borderline ham up. Bigger batches give more room for that.
+- **Emails can influence each other.** A spammy mail might pull a borderline ham in the same request up. Bigger batches give more room for emails influencing each other.
 - **Failures are coarser.** If a request fails or times out, you lose 10 answers instead of 1.
 - **Bigger isn't always better.** Very large batches can hit output limits or lower answer quality.
 
@@ -62,7 +62,7 @@ Every response reports its own token counts in `result.usage.input_tokens` and `
 Answer each question for yourself before you open it.
 
 <details>
-<summary>Billing is per token, not per request. So where does batching save money?</summary>
+<summary>Billing is per input token, not per request. So where does batching save money?</summary>
 
 Every request carries a fixed overhead of about 260 input tokens. Batching 10 emails pays it once instead of 10 times.
 

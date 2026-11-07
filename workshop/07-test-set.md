@@ -31,20 +31,25 @@ Two rules follow from this:
 
 2. Compare it with the train numbers you wrote down in steps 5 and 6.
 
+3. Read the test misses:
+
+   ```
+   uv run misses.py test
+   ```
+
 ## ✅ Checkpoint
 
-Your test numbers should be close to the **Test, split** row. You didn't run the baseline on test (that saves 10 requests), so the **Test, baseline** row comes from the facilitator's run:
+Your test numbers should be close to the **Test, split** row:
 
-| Set | accuracy | precision | hard_ham accuracy | real mail in the spam folder |
-|---|---|---|---|---|
-| Train, baseline | 0.92–0.94 | 0.83–0.87 | 0.60–0.70 | 6–8 |
-| Train, split | 0.95–0.96 | 0.97–1.00 | 1.00 | 0–1 |
-| Test, baseline (facilitator's run) | 0.94 | 0.87 | 0.70 | 6 |
-| Test, split | 0.95 | 0.95 | 0.90 | 2 |
+| Set             | accuracy  | precision | hard_ham accuracy | real mail in the spam folder |
+| --------------- | --------- | --------- | ----------------- | ---------------------------- |
+| Train, baseline | 0.92–0.94 | 0.83–0.87 | 0.60–0.70         | 6–8                          |
+| Train, split    | 0.95–0.96 | 0.97–1.00 | 1.00              | 0–1                          |
+| Test, split     | 0.95      | 0.95      | 0.90              | 2                            |
 
-The costly mistake dropped on test too: from 6 real emails in the spam folder to 2. That gain is bigger than the noise. It's smaller than on train, though, where it went from 6–8 to 0–1: **that's overfitting, measured.** Accuracy went up by only 0.01 on test, because a few more spam emails now slip through. The test numbers are what you can honestly expect on new email.
+The costly mistake dropped on test too: from 6 real emails in the spam folder to 2. That gain is bigger than the noise. It's smaller than on train, though, where it went from 6–8 to 0–1: **that's overfitting again.** Accuracy went up by only 0.01 on test, because a few more spam emails now slip through. The test numbers are what you can honestly expect on new email.
 
-Look at what slips through on test. Two of the spam ads carry a `List-Unsubscribe` header, so the rule treats their sender as known. That's the weakness the step 6 self-check asked about, and the train set never showed it. Because the decision is code, you can see exactly which fact let them through.
+Look at the `spam in inbox` lines in the test misses. Two of the spam ads carry a `List-Unsubscribe` header (`list_mail: True`), so the rule treats their sender as known. That's the weakness the step 6 self-check asked about, and the train set never showed it. Because the decision is code, you can see exactly which fact let them through.
 
 ## Takeaways
 

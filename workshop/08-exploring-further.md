@@ -10,8 +10,7 @@ In step 6 you made one change and measured it. **Hill-climbing** is doing that o
 2. **Change one thing at a time.** If you change two things and the score moves, you don't know which one did it.
 3. **Read the misses** (`uv run misses.py`) before you pick the next change. Guessing is more expensive than looking.
 4. **Keep a log.** Write every experiment, its numbers and your verdict in `hillclimb.md`. Failed experiments are the most useful part of that log: they stop you from trying the same thing twice.
-5. **Watch the cost.** Each train run costs 10 requests, and every new question adds output tokens for all 100 emails. Look at `result.usage` (see [step 4](04-batching.md)) whenever a change adds tokens.
-6. **Touch the test set only at the end**, once. Every look at it makes it less of a test.
+5. **Touch the test set only at the end**, once. Every look at it makes it less of a test.
 
 ### Ideas to climb with
 
@@ -39,7 +38,7 @@ With 100 emails you'll fit train quickly. Step 7 already showed it: real mail in
 
 ## Let Claude climb for you
 
-Hill-climbing is a loop with a clear metric, which makes it a good job for a coding agent. Start Claude Code in this folder and give it a prompt with firm rules:
+Hill-climbing is a loop with a clear metric, which makes it an ideal job for a coding agent. Ready to play *frontier lab scientist*? Start Claude Code in this folder and give it a prompt with firm rules:
 
 ```
 Hill-climb the spam filter in this repo on the train set.

@@ -4,7 +4,7 @@
 
 ## Read
 
-The tempting fix for the misses in step 5 is to keep the one question and add rules to it: "...but not newsletters the recipient subscribed to". That works for a while. Each new miss then gets another clause, and the wording grows until it's tuned to the emails you looked at. TypeSafe calls this **prompt gymnastics**.
+The tempting fix for the misses in step 5 is to keep the one question and add more rules to it, good old prompt engineering: "...but not newsletters the recipient subscribed to". That works for a while. Each new miss then gets another clause, and the wording grows until it's tuned to all the emails of the training set you looked at. TypeSafe calls this **prompt gymnastics**, an anti-pattern.
 
 The alternative: **Jev makes judgments, code makes decisions.** Read [Don't call it a decision model](https://typesafe.ai/blog/dont-call-it-a-decision-model) (5 min) for how Jev is meant to be used, and how not to use it. In short:
 
@@ -14,12 +14,12 @@ The alternative: **Jev makes judgments, code makes decisions.** Read [Don't call
 
 "Is this spam?" is a decision. Here it splits into three judgments and one fact:
 
-| Input | From | Question |
-|---|---|---|
-| `scam` | Jev | Is the email a scam? |
-| `advertising` | Jev | Does it advertise a product or service? |
-| `legit_sender` | Jev | Is it sent by a named, legitimate company or publication? |
-| `list_mail` | code | Does it have a `List-Unsubscribe` or `List-Id` header? (`facts` in `spam/message.py`) |
+| Input          | From | Question                                                                              |
+| -------------- | ---- | ------------------------------------------------------------------------------------- |
+| `scam`         | Jev  | Is the email a scam?                                                                  |
+| `advertising`  | Jev  | Does it advertise a product or service?                                               |
+| `legit_sender` | Jev  | Is it sent by a named, legitimate company or publication?                             |
+| `list_mail`    | code | Does it have a `List-Unsubscribe` or `List-Id` header? (`facts` in `spam/message.py`) |
 
 and one rule: **spam is a scam, or an ad from a sender the recipient doesn't know.** A sender counts as known when it's a legitimate company, or when the mail comes through a mailing list.
 
@@ -112,14 +112,14 @@ The judgments are probabilities, so the rule combines them with the usual fuzzy-
 
 `32 passed`, and then:
 
-| | auc | accuracy | precision | recall | hard_ham accuracy |
-|---|---|---|---|---|---|
-| Baseline (expected) | 0.98 | 0.92–0.94 | 0.83–0.87 | 1.00 | 0.60–0.70 |
-| Split (expected) | 1.00 | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00 |
+|                     | auc  | accuracy  | precision | recall    | hard_ham accuracy |
+| ------------------- | ---- | --------- | --------- | --------- | ----------------- |
+| Baseline (expected) | 0.98 | 0.92–0.94 | 0.83–0.87 | 1.00      | 0.60–0.70         |
+| Split (expected)    | 1.00 | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00              |
 
 Every hard ham now stays in the inbox. At most one real email lands in the spam folder: a boingboing RSS item whose `legit_sender` lands on 0.50, a coin flip. A few spam emails slip through: business ads from senders that look legitimate.
 
-`misses.py` now shows **why** each email ended up where it did. You can see which judgment or fact decided it, not just one number.
+`misses.py` now shows **why** each email ended up where it did. You can see which judgment or fact decided it, not just one number. This is important when building AI systems because it allows us to understand and debug the reasoning behind each decision.
 
 ## 🧠 Self-check
 
