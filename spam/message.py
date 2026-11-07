@@ -1,4 +1,4 @@
-"""A raw email reduced to what Jev reads: sender, subject and the start of the body."""
+"""A raw email reduced to what Jev reads (sender, subject, the start of the body) and what code knows (facts)."""
 
 import html
 import re
@@ -27,3 +27,9 @@ def summary(raw: bytes) -> dict[str, str]:
         "subject": str(message.get("subject", "")),
         "body": text(message)[:BODY_CHARS],
     }
+
+
+def facts(raw: bytes) -> dict[str, bool]:
+    """What code can tell about an email exactly, without asking Jev."""
+    message = message_from_bytes(raw, policy=policy.default)
+    return {"list_mail": "List-Unsubscribe" in message or "List-Id" in message}

@@ -20,8 +20,8 @@ That's **37% fewer input tokens** for the same 10 answers.
 Open `spam/jev.py` to see how it's done:
 
 - `request` puts the emails in `state` under `e1` … `e10`.
-- It asks one question per email, named `e1.spam` … `e10.spam`, and each one points at its own email: `` `emails.e3` ``.
-- `read` collects the answers back in request order.
+- It asks every question from `questions` once per email, named `e1.spam` … `e10.spam`, and each one points at its own email: `` `emails.e3` ``.
+- `read` collects each email's answers by name, in request order.
 - `GROUP = 10` sets how many emails go into one request.
 
 ## Do
@@ -54,7 +54,7 @@ Every response reports its own token counts in `result.usage.input_tokens` and `
 
 - Measure the overhead yourself: send the same emails one per request and then batched, and compare the totals.
 - Run the train set with `GROUP` at 1, 5, 10 and 20, and plot tokens against accuracy. Where does quality start to drop?
-- After step 6, move `CRITERIA` from the questions into `state`, refer to it from each question, and measure the tokens saved.
+- After step 6, move the `scam` criteria from the questions into `state`, refer to them from each question, and measure the tokens saved.
 - Shuffle the train set so each email gets different neighbours, run it twice, and compare the answers to see how much the neighbours matter.
 
 ## 🧠 Self-check

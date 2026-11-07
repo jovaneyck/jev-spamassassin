@@ -1,6 +1,6 @@
 # 5. Measure the baseline (10 min)
 
-[← Ten emails, one request](04-batching.md) · [Agenda](../README.md) · [Next: Improve the question →](06-improve.md)
+[← Ten emails, one request](04-batching.md) · [Agenda](../README.md) · [Next: Split the decision →](06-improve.md)
 
 ## Read
 
@@ -66,7 +66,10 @@ A high AUC tells you a good threshold *exists*, not that 0.5 is that threshold. 
        if not row["is_spam"] and row["spam"] >= 0.5:
            email = summary(Path(row["email"]).read_bytes())
            print(f"{row['spam']:.2f}  {email['from'][:40]:40}  {email['subject'][:60]}")
+           print(f"      judgments {row['judgments']}  facts {row['facts']}")
    ```
+
+   `solve.py` keeps a trace of every email in `out/train.jsonl`: Jev's **judgments**, the **facts** code worked out (`facts` in `spam/message.py`), and the resulting `spam` score from `spam/decision.py`. For now the decision just passes Jev's one judgment through, and the facts go unused. Step 6 changes that.
 
 4. Run it:
 
@@ -80,9 +83,9 @@ Your numbers should be close to these (Jev's answers vary a little from run to r
 
 | | auc | accuracy | precision | recall | hard_ham accuracy |
 |---|---|---|---|---|---|
-| Expected | 0.98 | 0.91 | 0.82 | 1.00 | 0.55 |
+| Expected | 0.98 | 0.92–0.94 | 0.83–0.87 | 1.00 | 0.60–0.70 |
 
-Every miss is a **newsletter or shop mail** that the recipient subscribed to: CNET, Amazon, Ryanair. The question asks about "commercial email", so Jev calls them spam.
+Every miss is a **newsletter or shop mail** that the recipient subscribed to: CNET, Ryanair, dELiA*s. The question asks about "commercial email", so Jev calls them spam.
 
 ## 🧠 Self-check
 
@@ -100,12 +103,12 @@ Answer each question for yourself before you open it.
 - **Recall** = caught / all spam = 40 / 40 = **1.00**
 - **Accuracy** = (caught + left alone) / all = (40 + 50) / 100 = **0.90**
 
-Your baseline is close to this: Jev flagged 9 ham instead of 10.
+Your baseline is close to this: Jev flags 6 to 8 ham instead of 10.
 
 </details>
 
 <details>
-<summary>AUC is 0.98 but accuracy only 0.91. How can both be true?</summary>
+<summary>AUC is 0.98 but accuracy only 0.92. How can both be true?</summary>
 
 Take five emails:
 
@@ -121,7 +124,7 @@ Take five emails:
 - **Accuracy** asks: is each email on the right side of 0.5? The two newsletters aren't, so accuracy is 3 out of 5.
 - With the line at 0.9, all five would be right.
 
-Your baseline has the same problem: almost all spam scores above the hard ham, but 9 hard-ham emails still score above 0.5.
+Your baseline has the same problem: almost all spam scores above the hard ham, but 6 to 8 hard-ham emails still score above 0.5.
 
 </details>
 
@@ -135,8 +138,8 @@ A missed spam is an annoyance. A real email in the spam folder can go unread.
 <details>
 <summary>Why list the misses before changing anything?</summary>
 
-They show what to change. Here they all share one pattern: subscribed newsletters and shop mail.
+They show what to change. Here they all share one pattern: subscribed newsletters and shop mail. The trace shows the problem too: with one judgment, there's nothing to read except one number.
 
 </details>
 
-[Next: Improve the question →](06-improve.md)
+[Next: Split the decision →](06-improve.md)

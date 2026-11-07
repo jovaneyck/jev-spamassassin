@@ -16,6 +16,10 @@ Coding agents are encouraged but not essential to reduce the toil, you'll learn 
 
 Jev is quite fresh and not yet part of the model weights, so you might want to copy the following skill for better results when working with typesafe/jev: [typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md](https://raw.githubusercontent.com/typesafe-ai/skills/main/skills/typesafe-ai/SKILL.md)
 
+## How Jev is meant to be used
+
+**Jev makes judgments, code makes decisions.** Jev answers small questions a person could answer at a glance. Your code works out the facts it can know exactly and combines both into the decision. Step 6 is built on this idea. [Don't call it a decision model](https://typesafe.ai/blog/dont-call-it-a-decision-model) explains how to use Jev, and how not to.
+
 ## Agenda
 
 | #   | Step                                                 | Time   |
@@ -25,7 +29,7 @@ Jev is quite fresh and not yet part of the model weights, so you might want to c
 | 3   | [Your first Jev call](workshop/03-first-jev-call.md) | 10 min |
 | 4   | [Ten emails, one request](workshop/04-batching.md)   | 5 min  |
 | 5   | [Measure the baseline](workshop/05-baseline.md)      | 10 min |
-| 6   | [Improve the question](workshop/06-improve.md)       | 15 min |
+| 6   | [Split the decision](workshop/06-improve.md)         | 20 min |
 | 7   | [Check on the test set](workshop/07-test-set.md)     | 5 min  |
 
 Start with [step 1](workshop/01-setup.md).
@@ -38,8 +42,9 @@ After the workshop: [Exploring further](workshop/08-exploring-further.md) covers
 | ----------------- | ------------------------------------------------------------------ |
 | `extract.py`      | Unpacks the corpus archives into `dataset/`                        |
 | `split.py`        | Writes the train and test sets to `splits/` (already done for you) |
-| `spam/message.py` | Reduces a raw email to sender, subject and the start of the body   |
-| `spam/jev.py`     | Builds one Jev request for a batch of emails and reads its answers |
+| `spam/message.py` | Reduces a raw email to what Jev reads, and works out facts in code |
+| `spam/jev.py`     | The questions Jev answers, asked for a batch of emails at once     |
+| `spam/decision.py`| Combines Jev's judgments and the facts into a spam score            |
 | `spam/solver.py`  | Sends every batch, a few at a time                                 |
 | `spam/metrics.py` | AUC, accuracy, precision and recall                                |
 | `solve.py`        | Classifies a set and prints its scores                             |

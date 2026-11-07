@@ -22,6 +22,7 @@ A question refers to things in `state` by name, between backticks: `` `email` ``
    from dotenv import load_dotenv
    from typesafe_sdk import Noul, TypeSafeClient
 
+   from spam.jev import MODEL
    from spam.message import summary
 
    load_dotenv()
@@ -33,7 +34,7 @@ A question refers to things in `state` by name, between backticks: `` `email` ``
        result = client.system_one(
            state={"email": email},
            questions={"spam": Noul(instructions="Is `email` spam: unsolicited bulk or commercial email?")},
-           model="jev-preview",
+           model=MODEL,
        )
        print(result.answers["spam"].noul)
    ```

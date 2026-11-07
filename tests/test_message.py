@@ -1,4 +1,4 @@
-from spam.message import BODY_CHARS, summary
+from spam.message import BODY_CHARS, facts, summary
 
 PLAIN = b"""From: Alice <alice@example.com>
 Received: from relay.example.com
@@ -50,3 +50,15 @@ def test_truncates_long_bodies():
 
 def test_missing_headers_and_body_are_empty():
     assert summary(b"\n") == {"from": "", "subject": "", "body": ""}
+
+
+def test_mail_with_an_unsubscribe_header_is_list_mail():
+    assert facts(b"List-Unsubscribe: <mailto:leave@list.org>\nSubject: news\n\nhi") == {"list_mail": True}
+
+
+def test_mail_with_a_list_id_header_is_list_mail():
+    assert facts(b"List-Id: <users.list.org>\nSubject: news\n\nhi") == {"list_mail": True}
+
+
+def test_mail_without_list_headers_is_not_list_mail():
+    assert facts(PLAIN) == {"list_mail": False}

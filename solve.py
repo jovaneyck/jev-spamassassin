@@ -18,9 +18,9 @@ from pathlib import Path
 from dotenv import load_dotenv
 from typesafe_sdk import AsyncTypeSafeClient
 
-from spam import jev
+from spam import decision, jev
 from spam.corpus import SPAM
-from spam.message import summary
+from spam.message import facts, summary
 from spam.metrics import Scored, auc, confusion
 from spam.solver import THRESHOLD, solve
 
@@ -46,13 +46,14 @@ def report(scored: list[Scored]) -> None:
 
 async def main(name: str) -> None:
     paths = [Path(line) for line in (SPLITS / f"{name}.txt").read_text().splitlines()]
-    emails = [summary(p.read_bytes()) for p in paths]
+    raws = [p.read_bytes() for p in paths]
+    known = [facts(raw) for raw in raws]
     async with AsyncTypeSafeClient(api_key=os.environ["API_KEY"], timeout=60) as client:
-        scores = await solve(partial(jev.ask, client), emails, asyncio.Semaphore(CONCURRENCY))
-    scored = [Scored(partition(p), partition(p) in SPAM, s) for p, s in zip(paths, scores)]
+        judged = await solve(partial(jev.ask, client), [summary(raw) for raw in raws], asyncio.Semaphore(CONCURRENCY))
+    scored = [Scored(partition(p), partition(p) in SPAM, decision.spam(j, f)) for p, j, f in zip(paths, judged, known)]
     OUT.mkdir(exist_ok=True)
-    rows = [{"email": p.as_posix(), "partition": s.partition, "is_spam": s.is_spam, "spam": s.score}
-            for p, s in zip(paths, scored)]
+    rows = [{"email": p.as_posix(), "partition": s.partition, "is_spam": s.is_spam, "spam": s.score, "judgments": j, "facts": f}
+            for p, s, j, f in zip(paths, scored, judged, known)]
     (OUT / f"{name}.jsonl").write_text("".join(json.dumps(r) + "\n" for r in rows))
     report(scored)
 
