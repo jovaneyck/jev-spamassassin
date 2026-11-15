@@ -2,8 +2,7 @@
 
 Run:
     1. Put API_KEY=<your TypeSafe key> in .env
-    2. uv run split.py               (once)
-    3. uv run solve.py [train|test]  (default: train; climb on train, check on test)
+    2. uv run solve.py [train|test]  (default: train; climb on train, check on test)
     Answers are written to out/<set>.jsonl.
 """
 
@@ -37,6 +36,8 @@ def report(scored: list[Scored]) -> None:
     c = confusion(scored, THRESHOLD)
     print(f"{len(scored)} emails  auc={auc(scored):.3f}  accuracy={c.accuracy:.3f}  "
           f"precision={c.precision:.3f}  recall={c.recall:.3f}  (threshold {THRESHOLD})")
+    print(f"  friendly fire={c.false_positives} (real mail in the spam folder)  "
+          f"slipped through={c.false_negatives} (spam in the inbox)")
     by_partition: dict[str, list[Scored]] = defaultdict(list)
     for s in scored:
         by_partition[s.partition].append(s)
