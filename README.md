@@ -1,4 +1,4 @@
-![Meet Jev. Build a spam filter in one hour.](workshop/img/banner.svg)
+![Meet Jev. Build a spam filter in one hour.](workshop/img/banner.png)
 
 # Meet Jev: build a spam filter in one hour
 

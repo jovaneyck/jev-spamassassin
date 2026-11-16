@@ -4,7 +4,7 @@
 
 [← 00 Boot up](00-boot-up.md) · [Agenda](../README.md) · [Next: 02 Batch →](02-batch.md)
 
-**TL;DR.** Ask Jev one question about one email. Watch it call a legit Ryanair email spam. Then ask it some silly questions. Run `uv run first_call.py`.
+**TL;DR.** Ask Jev one question about one email. Watch it call a legit Ryanair email spam. Then ask it some silly questions.
 
 ## Read
 
@@ -61,7 +61,7 @@ section and run it. Then explain to me, in two sentences, what went into `state`
 
 ## Checkpoint
 
-The last line is a number close to **0.95**. Jev is pretty sure this is spam. If the email above it shows `�` where a `£` should be, blame your terminal, not Jev.
+The last line is a number close to **0.95**. Jev is pretty sure this is spam.
 
 Plot twist. It's from `hard_ham`. Ryanair is selling travel insurance to a customer who signed up for their mail, and Jev just binned it. This is fine. 🔥
 
