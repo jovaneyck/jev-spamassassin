@@ -4,7 +4,7 @@
 
 [← 04 Improve](04-improve.md) · [Agenda](../README.md) · [Next: Side quests →](side-quests.md)
 
-**TL;DR.** Open the sealed envelope, once. Inside are 100 emails nobody has looked at. Post your numbers on the leaderboard. Run `uv run solve.py test`.
+**TL;DR.** Open the sealed envelope, once. Inside are 100 emails nobody has looked at.
 
 ## Read
 
@@ -19,7 +19,7 @@ Think of an exam. If students practise on the actual exam questions, a perfect s
 
 ### Overfitting
 
-Jo chose step 04's questions and rule after reading the train misses: CNET, Amazon, Ryanair. They capture a real pattern, but those particular emails shaped them too. Part of your train gain comes from **fitting the emails you looked at**, not spam in general. That's **overfitting**: a change that looks better on the data you tuned on than it really is.
+We chose step 04's questions and rule after reading the train misses: CNET, Amazon, Ryanair. They capture a real pattern, but those particular emails shaped them too. Part of your train gain comes from **fitting the emails you looked at**, not spam in general. That's called **overfitting**: a change that looks better on the data you tuned on than it really is in the wild.
 
 The train score can't show you overfitting, because it's measured on the very emails you tuned on. Only emails you never looked at can. Time to open the envelope.
 
@@ -60,13 +60,13 @@ misses.py on the test set. Show me both outputs next to my train numbers from st
 
 Your test numbers should be close to the **Test, step 04** row:
 
-| Set              | auc       | accuracy  | precision | recall    | hard_ham accuracy | friendly fire |
-| ---------------- | --------- | --------- | --------- | --------- | ----------------- | ------------- |
-| Train, step 03   | 0.98–0.99 | 0.92–0.94 | 0.83–0.87 | 1.00      | 0.60–0.70         | 6–8           |
-| Train, step 04   | 1.00      | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00              | 0–1           |
-| Test, step 04    | 0.99      | 0.95–0.96 | 0.95      | 0.93–0.95 | 0.90              | 2             |
+| Set            | auc       | accuracy  | precision | recall    | hard_ham accuracy | friendly fire |
+| -------------- | --------- | --------- | --------- | --------- | ----------------- | ------------- |
+| Train, step 03 | 0.98–0.99 | 0.92–0.94 | 0.83–0.87 | 1.00      | 0.60–0.70         | 6–8           |
+| Train, step 04 | 1.00      | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00              | 0–1           |
+| Test, step 04  | 0.99      | 0.95–0.96 | 0.95      | 0.93–0.95 | 0.90              | 2             |
 
-The expensive mistake dropped on test too. When Jo ran the step 03 filter on the test set, it binned 6 real emails. Yours bins about 2. That gain is bigger than the noise. It's smaller than on train, though, where friendly fire went from 6–8 to 0–1. **That's overfitting, measured.** Accuracy barely moved, because a few more spams now slip through.
+The expensive mistake dropped on test too. When Jo ran the step 03 filter on the test set, it binned 6 real emails. Yours bins about 2. That gain is bigger than the noise. It's smaller than on train, though, where friendly fire went from 6–8 to 0–1. **That's overfitting in practice.** Accuracy barely moved, because a few more spams now slip through.
 
 The test numbers are what you can honestly expect on new email.
 

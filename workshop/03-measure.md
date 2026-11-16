@@ -4,22 +4,22 @@
 
 [← 02 Batch](02-batch.md) · [Agenda](../README.md) · [Next: 04 Improve →](04-improve.md)
 
-**TL;DR.** Run the filter on the 100 train emails, meet the four boxes every email lands in, read the misses, and find out whether Jev beat you at *Spam or not?*. Run `uv run solve.py train`.
+**TL;DR.** Run the filter on the 100 train emails, meet the four boxes every email lands in, read the misses, and find out whether Jev beat you at *Spam or not?*.
 
-Before you change anything, you need a score to beat. This step gets you one.
+Before you change anything, you need a score to beat. This step gets you your baseline.
 
 ## Read
 
 `solve.py` classifies a set of emails and prints:
 
-| Number          | What it tells you                                                                                                               |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| `auc`           | The chance that a random spam scores higher than a random ham. 1.0 means the ranking is perfect.                                |
-| `accuracy`      | Share of emails on the right side of the 0.5 line.                                                                              |
-| `precision`     | Share of the emails you binned that really are spam. Low precision means real mail in the spam folder.                          |
-| `recall`        | Share of the spam you caught.                                                                                                   |
-| `friendly fire` | Real emails that ended up in the spam folder. **This is the expensive mistake.**                                                |
-| `slipped through` | Spam that made it to the inbox. Annoying, but you'll live.                                                                    |
+| Number            | What it tells you                                                                                                      |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `auc`             | Area Under the Curve. The chance that a random spam scores higher than a random ham. 1.0 means the ranking is perfect. |
+| `accuracy`        | Share of emails on the right side of the 0.5 line.                                                                     |
+| `precision`       | Share of the emails you binned that really are spam. Low precision means real mail in the spam folder.                 |
+| `recall`          | Share of the spam you caught.                                                                                          |
+| `friendly fire`   | Real emails that ended up in the spam folder. **This is the expensive mistake.**                                       |
+| `slipped through` | Spam that made it to the inbox. Annoying, but you'll live.                                                             |
 
 ### The four boxes
 
@@ -36,16 +36,16 @@ Count the boxes and you get the confusion matrix. Precision, recall and accuracy
 
 ![Confusion matrix for the ten emails, and which boxes precision, recall and accuracy use](img/confusion-matrix.svg)
 
-AUC ignores the line. It only asks whether spam looks shadier than ham:
+AUC ignores the 0.5 line. It only asks whether spam looks shadier than ham:
 
 ![AUC: one of 24 spam-ham pairs is in the wrong order, so AUC is 23 out of 24](img/auc.svg)
 
-| AUC        | What it means                                                                                     |
-| ---------- | ------------------------------------------------------------------------------------------------- |
-| 1.0        | Every spam scores higher than every ham. Some line separates them perfectly.                      |
-| 0.9 and up | Excellent. Only a few spam-ham pairs are in the wrong order.                                      |
-| 0.5        | A coin flip. The scores say nothing about spam.                                                   |
-| Below 0.5  | Worse than a coin flip. Something is upside down, like the question or the labels.                |
+| AUC        | What it means                                                                      |
+| ---------- | ---------------------------------------------------------------------------------- |
+| 1.0        | Every spam scores higher than every ham. Some line separates them perfectly.       |
+| 0.9 and up | Excellent. Only a few spam-ham pairs are in the wrong order.                       |
+| 0.5        | A coin flip. The scores say nothing about spam.                                    |
+| Below 0.5  | Worse than a coin flip. Something is upside down, like the question or the labels. |
 
 A high AUC tells you a good line *exists*. It doesn't tell you 0.5 is that line. That's how a filter can rank almost perfectly and still bin your real mail.
 
@@ -126,8 +126,8 @@ Then tell me what the misses have in common. Never run anything on the test set.
 
 Your numbers should be close to these. Jev's answers wobble a little from run to run.
 
-|          | auc  | accuracy  | precision | recall | hard_ham accuracy | friendly fire |
-| -------- | ---- | --------- | --------- | ------ | ----------------- | ------------- |
+|          | auc       | accuracy  | precision | recall | hard_ham accuracy | friendly fire |
+| -------- | --------- | --------- | --------- | ------ | ----------------- | ------------- |
 | Expected | 0.98–0.99 | 0.92–0.94 | 0.83–0.87 | 1.00   | 0.60–0.70         | 6–8           |
 
 Every friendly fire is an imposter. They're newsletters and shop mail the recipient signed up for, from senders like CNET, Ryanair and dELiA*s. The question says "commercial email", so Jev bins them.
@@ -171,10 +171,10 @@ They tell you what to change. Here they share one pattern. They're newsletters a
 <details>
 <summary>A set has 40 spam and 60 ham. The filter bins 50 emails: all 40 spam and 10 ham. Fill in the four boxes, then work out precision, recall and accuracy.</summary>
 
-|             | Binned               | Not binned            |
-| ----------- | -------------------- | --------------------- |
-| **Is spam** | 40, nailed it        | 0, slipped through    |
-| **Is ham**  | 10, friendly fire    | 50, chill             |
+|             | Binned            | Not binned         |
+| ----------- | ----------------- | ------------------ |
+| **Is spam** | 40, nailed it     | 0, slipped through |
+| **Is ham**  | 10, friendly fire | 50, chill          |
 
 - **Precision** = nailed it / all binned = 40 / 50 = **0.80**
 - **Recall** = nailed it / all spam = 40 / 40 = **1.00**

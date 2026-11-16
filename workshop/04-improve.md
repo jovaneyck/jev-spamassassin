@@ -4,7 +4,7 @@
 
 [← 03 Measure](03-measure.md) · [Agenda](../README.md) · [Next: 05 Test →](05-test.md)
 
-**TL;DR.** Split "is this spam?" into three small questions for Jev plus one fact from code, and let a tested rule make the call. Friendly fire drops to almost zero. Then try to sneak your own spam past the filter. Run `uv run pytest`, then `uv run solve.py train`.
+**TL;DR.** Split "is this spam?" into three small questions for Jev plus one fact from code, and let a tested rule make the call. Friendly fire drops to almost zero. Then try to sneak your own spam past the filter.
 
 ## Read
 
@@ -25,11 +25,11 @@ The obvious fix for step 03's misses is to keep the one question and bend it: "I
 
 "Is this spam?" is a decision. It splits into three judgments and one fact:
 
-| Input          | Who  | Question                                                                              |
-| -------------- | ---- | ------------------------------------------------------------------------------------- |
-| `scam`         | Jev  | Is the email a scam?                                                                  |
-| `advertising`  | Jev  | Does it advertise a product or service?                                               |
-| `legit_sender` | Jev  | Is it sent by a named, legitimate company or publication?                             |
+| Input          | Who  | Question                                                                                 |
+| -------------- | ---- | ---------------------------------------------------------------------------------------- |
+| `scam`         | Jev  | Is the email a scam?                                                                     |
+| `advertising`  | Jev  | Does it advertise a product or service?                                                  |
+| `legit_sender` | Jev  | Is it sent by a named, legitimate company or publication?                                |
 | `list_mail`    | code | Does it have a `List-Unsubscribe` or `List-Id` header? See `facts` in `spam/message.py`. |
 
 And one rule: **spam is a scam, or an ad from a stranger.** A sender isn't a stranger when it's a legitimate company, or when the mail comes through a mailing list.
@@ -137,10 +137,10 @@ neighbour" to me.
 
 `32 passed`, and then:
 
-|                     | auc  | accuracy  | precision | recall    | hard_ham accuracy | friendly fire |
-| ------------------- | ---- | --------- | --------- | --------- | ----------------- | ------------- |
-| Step 03 (expected)  | 0.98–0.99 | 0.92–0.94 | 0.83–0.87 | 1.00      | 0.60–0.70         | 6–8           |
-| Step 04 (expected)  | 1.00      | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00              | 0–1           |
+|                    | auc       | accuracy  | precision | recall    | hard_ham accuracy | friendly fire |
+| ------------------ | --------- | --------- | --------- | --------- | ----------------- | ------------- |
+| Step 03 (expected) | 0.98–0.99 | 0.92–0.94 | 0.83–0.87 | 1.00      | 0.60–0.70         | 6–8           |
+| Step 04 (expected) | 1.00      | 0.95–0.96 | 0.97–1.00 | 0.90–0.93 | 1.00              | 0–1           |
 
 Every imposter stays in the inbox now, Ryanair and Jeff Bezos included. At most one real email gets binned, and it isn't even an imposter. It's a boingboing RSS item from `easy_ham` whose `legit_sender` sits just under 0.5, a coin flip. A few spams slip through. They're business ads from senders that look legitimate, and quiz email `00408`, the recruiting agency, is one of them. So in the quiz Jev now gets Bezos right and misses `00408`.
 

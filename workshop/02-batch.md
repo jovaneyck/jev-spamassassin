@@ -4,7 +4,7 @@
 
 [← 01 Ask](01-ask.md) · [Agenda](../README.md) · [Next: 03 Measure →](03-measure.md)
 
-**TL;DR.** Ten emails in one request cost about as much as six sent one by one. This is a reading step. Run `uv run pytest tests/test_jev.py -v`.
+**TL;DR.** Ten emails in one request cost about as much as six sent one by one. The batching trade-off. 
 
 ## Read
 
@@ -45,7 +45,7 @@ through request() and read() in spam/jev.py using a batch of two emails as the e
    uv run pytest tests/test_jev.py -v
    ```
 
-2. Match each of the three test names to the bullet it checks. One bullet has no test.
+2. Match each of the three test names to the bullet it checks.
 
 ## Checkpoint
 

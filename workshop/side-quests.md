@@ -4,7 +4,7 @@
 
 [← 05 Test](05-test.md) · [Agenda](../README.md)
 
-The workshop's over. The filter isn't. Pick a quest.
+The workshop's done. The filter isn't. Pick a quest.
 
 ## Climb the hill by hand
 
@@ -86,9 +86,11 @@ Spam was the warm-up. The same moves work anywhere software has to make a call a
 
 1. Write down the decision your code has to make.
 2. Split it into small judgments for Jev and facts for code.
-3. Write the rule as a tested function.
+3. Write the rule in code.
 4. Label 50 examples, keep a sealed test set, and measure.
 
 Nouls aren't the only kind of question. Jev can also pick a **Choice** among options, place something on a **Score** with levels you describe, or find a **Box** in an image. [.agents/skills/typesafe-ai/SKILL.md](../.agents/skills/typesafe-ai/SKILL.md) and the [TypeSafe docs](https://docs.typesafe.ai/introduction) have the details.
+
+If you have 20 minutes to spare, watch the godfather of Jev explain why this technology is a big deal (TM): [You're not Jevving Hard Enough](https://youtu.be/Cyt3LU8TyNc)
 
 [← Back to the agenda](../README.md)
