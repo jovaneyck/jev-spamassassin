@@ -6,7 +6,7 @@
 
 **TL;DR.** Install everything, say hello to Jev, then play *Spam or not?* against the room. Run `uv run hello_jev.py` and look for a number above 0.5.
 
-Welcome to 2002. Your modem screams when it connects, and someone keeps emailing you about a free paysite. The SpamAssassin project collected thousands of these emails and labelled every one. You're going to dig through them.
+Welcome to 2002. Your 56k modem screams bloody murder when it connects to the internet, and someone keeps emailing you about a free paysite. The SpamAssassin project collected thousands of these emails and labelled every one: ham or spam?. You're going to dig through them.
 
 ## Driving with an agent?
 
@@ -108,13 +108,13 @@ Keep your answers. In step 03 you'll find out whether Jev beats you.
 <details>
 <summary>Answers. Vote first.</summary>
 
-| Email   | Label | Partition                                                                |
-| ------- | ----- | ------------------------------------------------------------------------ |
-| `00572` | ham   | `easy_ham`. Someone on a mailing list showing off scrambled spelling.    |
-| `00895` | spam  | `spam_2`. A Lagos barrister needs a trustworthy stranger. Classic.       |
-| `00237` | ham   | `hard_ham`. Jeff Bezos announcing Amazon's apparel store to a customer.  |
-| `00408` | spam  | `spam_2`. A recruiting agency's "newsletter" that nobody signed up for.  |
-| `00276` | spam  | `spam`. "Did I give you the money yet?" No. Nobody ever did.             |
+| Email   | Label | Partition                                                               |
+| ------- | ----- | ----------------------------------------------------------------------- |
+| `00572` | ham   | `easy_ham`. Someone on a mailing list showing off scrambled spelling.   |
+| `00895` | spam  | `spam_2`. A Lagos barrister needs a trustworthy stranger. Classic.      |
+| `00237` | ham   | `hard_ham`. Jeff Bezos announcing Amazon's apparel store to a customer. |
+| `00408` | spam  | `spam_2`. A recruiting agency's "newsletter" that nobody signed up for. |
+| `00276` | spam  | `spam`. "Did I give you the money yet?" No. Nobody ever did.            |
 
 </details>
 
